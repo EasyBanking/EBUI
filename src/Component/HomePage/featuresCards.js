@@ -1,72 +1,133 @@
+import { Link } from "react-router-dom";
+
 export default function FeaturesCards() {
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 gap-5 md:gap-10">
+    <div className="grid md:grid-cols-4 grid-cols-1 gap-5 md:gap-10">
       {/*             Card 1                      */}
-
-      <div className="card  bg-base-100 shadow-xl flex flex-row pl-0 p-4 md:p-8 ">
-        <div className="mr-5">
-          <img
-            src="https://img.icons8.com/nolan/64/timeline.png"
-            className="w-10 m-2 inline"
-            alt="Icon"
-          />
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img
+              src="./pic/Transfer.gif"
+              className="w-20 m-2 inline "
+              alt="Icon"
+            />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">Transfer</h2>
+          </div>
         </div>
-        <div className="card-body p-0  ">
-          <h2 className="card-title">Easy to Customiz</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-        </div>
-      </div>
+      </Link>
 
       {/*             Card 2                      */}
 
-      <div className="card  bg-base-100 shadow-xl flex flex-row pl-0 p-4 md:p-8 justify-between">
-        <div className="mr-5">
-          <img
-            src="https://img.icons8.com/nolan/64/timeline.png"
-            className="w-10 m-2 inline"
-            alt="Icon"
-          />
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img src="./pic/card.gif" className="w-20 m-2 inline " alt="Icon" />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">pay</h2>
+          </div>
         </div>
-        <div className="card-body p-0  ">
-          <h2 className="card-title">Extreme Security</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end"></div>
-        </div>
-      </div>
-
+      </Link>
       {/*             Card 3                      */}
 
-      <div className="card  bg-base-100 shadow-xl flex flex-row pl-0 p-4 md:p-8 justify-between">
-        <div className="mr-5">
-          <img
-            src="https://img.icons8.com/nolan/64/timeline.png"
-            className="w-10 m-2 inline"
-            alt="Icon"
-          />
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img
+              src="./pic/Caution.gif"
+              className="w-20 m-2 inline "
+              alt="Icon"
+            />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">Urgents</h2>
+          </div>
         </div>
-        <div className="card-body p-0  ">
-          <h2 className="card-title">Customer Support</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end"></div>
-        </div>
-      </div>
+      </Link>
 
       {/*             Card 4                      */}
 
-      <div className="card  bg-base-100 shadow-xl flex flex-row pl-0 p-4  md:p-8 justify-between">
-        <div className="mr-5">
-          <img
-            src="https://img.icons8.com/nolan/64/timeline.png"
-            className="w-10 m-2 inline"
-            alt="Icon"
-          />
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img
+              src="./pic/Calendar.gif"
+              className="w-20 m-2 inline "
+              alt="Icon"
+            />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">Schedule</h2>
+          </div>
         </div>
-        <div className="card-body p-0  ">
-          <h2 className="card-title">Creative Design</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end"></div>
+      </Link>
+
+      {/*             Card 5                      */}
+
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img
+              src="./pic/texting.gif"
+              className="w-20 m-2 inline "
+              alt="Icon"
+            />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">Custmer service</h2>
+          </div>
         </div>
-      </div>
+      </Link>
+
+      {/*             Card 6                      */}
+
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img
+              src="./pic/Compass.gif"
+              className="w-20 m-2 inline "
+              alt="Icon"
+            />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">Stats</h2>
+          </div>
+        </div>
+      </Link>
+
+      {/*             Card 7                      */}
+
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img
+              src="./pic/Location.gif"
+              className="w-20 m-2 inline "
+              alt="Icon"
+            />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">Location</h2>
+          </div>
+        </div>
+      </Link>
+
+      {/*             Card 8                      */}
+
+      <Link to="#">
+        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+          <div className=" text-center">
+            <img src="./pic/Back.gif" className="w-20 m-2 inline " alt="Icon" />
+          </div>
+          <div className="card-body p-0 items-center ">
+            <h2 className="card-title ">Logout</h2>
+          </div>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 export default function Review() {
   return (
-    <div id="Review" className="grid grid-cols-1  bg-slate-50 p-20 lg:pt-96  ">
+    <div id="Review" className="grid grid-cols-1  bg-slate-50 p-20  ">
       <div className="text-center mb-10">
         <p className="font-3xl   lg:text-4xl text-2xl text-black  pl-2 pb-3">
           What Our Customers

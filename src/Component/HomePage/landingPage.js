@@ -4,7 +4,7 @@ export default function Landing() {
   return (
     <div
       id="App"
-      className="bg-slate-50 grid sm:grid-cols-1 gap-10 md:grid-cols-2  md:p-20  px-0"
+      className="bg-slate-50 grid grid-cols-1 gap-10 lg:grid-cols-2  md:p-32   px-0"
     >
       <div className="grid content-center col-span-1 p-10">
         <div className="pl-6">
@@ -25,17 +25,11 @@ export default function Landing() {
           </p>
 
           <button className="btn btn-secondary rounded-full">
-            <Link to="#">Dowenload</Link>
+            <a href="#Features">Start</a>
           </button>
         </div>
       </div>
-      <div className="relative m-auto hidden md:block md:col-span-1 lg:before:bg-red-300 lg:before:top-13 lg:before:left-50    lg:before:h-32 before:w-32 lg: before:rounded-full lg:before:absolute lg:after:bg-purple-300 lg:after:bottom-10 lg:after:right-14    lg:after:h-20 after:w-20  lg:after:rounded-full lg:after:absolute ">
-        <img
-          className="w-2/5  overflow-hidden m-auto   "
-          src="./pic/Mobile5.png"
-          alt="Mobile"
-        />
-      </div>
+      <div className="relative m-auto hidden md:block md:col-span-1 lg:before:bg-red-300 lg:before:top-13 lg:before:left-50    lg:before:h-32 before:w-32 lg: before:rounded-full lg:before:absolute lg:after:bg-purple-300 lg:after:bottom-10 lg:after:right-14    lg:after:h-20 after:w-20  lg:after:rounded-full lg:after:absolute "></div>
     </div>
   );
 }

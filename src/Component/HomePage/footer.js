@@ -23,9 +23,7 @@ export default function Footer() {
         <a href="#Help" className="mb-4">
           Help
         </a>
-        <a href="#Pricing" className="mb-4">
-          Pricing
-        </a>
+
         <a href="#Review" className="mb-4">
           Reviews
         </a>
