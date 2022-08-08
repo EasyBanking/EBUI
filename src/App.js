@@ -11,10 +11,25 @@ import Login from "./pages/Login";
 import ForgetPassword from "./pages/forget-password";
 import RestorePassword from "./pages/Restore-Password";
 import Register from "./pages/Register";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthGuard } from "./wrappers/Auth";
+//import Dashboard from "./pages/Dashboard";
 
 library.add(fas);
 library.add(far);
 library.add(fab);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnmount: false,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: 5 * 60 * 1000,
+    },
+  },
+});
 
 const routes = [
   {
@@ -33,27 +48,33 @@ const routes = [
     path: "/register",
     Page: Register,
   },
+  {
+    path: "/app",
+    Page: () => <AuthGuard> i am authenticated </AuthGuard>,
+  },
 ];
 
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <ThemeWrapper>
-          <Routes>
-            {routes.map(({ Page, path }, i) => {
-              return (
-                <Route
-                  path={path}
-                  caseSensitive={true}
-                  element={<Page />}
-                  key={`pg-${i}`}
-                />
-              );
-            })}
-          </Routes>
-        </ThemeWrapper>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeWrapper>
+            <Routes>
+              {routes.map(({ Page, path }, i) => {
+                return (
+                  <Route
+                    path={path}
+                    caseSensitive={true}
+                    element={<Page />}
+                    key={`pg-${i}`}
+                  />
+                );
+              })}
+            </Routes>
+          </ThemeWrapper>
+        </BrowserRouter>
+      </QueryClientProvider>
     </Provider>
   );
 }
