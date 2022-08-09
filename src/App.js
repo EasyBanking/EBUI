@@ -13,6 +13,8 @@ import RestorePassword from "./pages/Restore-Password";
 import Register from "./pages/Register";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthGuard } from "./wrappers/Auth";
+import Registered from "./pages/Registered";
+import Activate from "./pages/activate";
 //import Dashboard from "./pages/Dashboard";
 
 library.add(fas);
@@ -22,6 +24,13 @@ library.add(fab);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      refetchOnWindowFocus: false,
+      refetchOnmount: false,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: 5 * 60 * 1000,
+    },
+    mutations: {
       refetchOnWindowFocus: false,
       refetchOnmount: false,
       refetchOnReconnect: false,
@@ -41,7 +50,7 @@ const routes = [
     Page: ForgetPassword,
   },
   {
-    path: "/restore-password",
+    path: "/restore/:token",
     Page: RestorePassword,
   },
   {
@@ -51,6 +60,14 @@ const routes = [
   {
     path: "/app",
     Page: () => <AuthGuard> i am authenticated </AuthGuard>,
+  },
+  {
+    path: "/info",
+    Page: Registered,
+  },
+  {
+    path: "/activate/:token",
+    Page: Activate,
   },
 ];
 
