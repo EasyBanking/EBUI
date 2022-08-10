@@ -1,12 +1,31 @@
 import axios from "axios";
 
-const URL = "http://localhost:4000/api";
+const URL = process.env.REACT_APP_API;
 
-export default axios.create({
+console.log(URL);
+
+const HttpClient = axios.create({
   baseURL: URL,
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
+HttpClient.interceptors.request.use((config) => {
+  const token = localStorage?.getItem("token");
 
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  const csrf = localStorage?.getItem("csrf");
+
+  if (config.method !== "get" && csrf) {
+    config.headers["x-csrf-token"] = csrf;
+  }
+
+  return config;
+});
+
+export default HttpClient;

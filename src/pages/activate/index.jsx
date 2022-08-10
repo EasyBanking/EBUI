@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Activation from "../../components/Activation";
 import { useMutation } from "@tanstack/react-query";
 import HttpClient from "../../Http-Client";
 import { LoaderWrapper } from "../../components/Loader";
+
 export default function Activate(props) {
   const param = useParams();
 
@@ -41,7 +42,7 @@ export default function Activate(props) {
       title={"activation"}
       text={
         error
-          ? error?.response?.data?.message || error.message
+          ? error?.response?.data?.message || error?.message
           : "your account has been activated successfully"
       }
     />

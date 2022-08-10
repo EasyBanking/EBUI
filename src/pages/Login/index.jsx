@@ -28,26 +28,30 @@ export default function Login() {
       },
       validationSchema: loginSchema,
       onSubmit: (v) => {
-        setRequestLoading(true);
-        handleLoginSubmit(v, ({ data }, err) => {
-          if (err) {
-            setToaster({
-              message: err?.response?.data?.message || err.message,
-              type: "error",
-              show: true,
-            });
-            setRequestLoading(false);
-          } else {
-            // first sign token to the local storage
-            localStorage.setItem("X-AUTH-TOKEN", data.token);
-            // set authenticated to redux store
-            dispatch(login(data));
+        handleLoginSubmit(
+          v,
+          (res, err) => {
+            const { data } = res ?? {};
 
-            setRequestLoading(false);
-            // navigate to the app page
-            navigate("/app");
-          }
-        });
+            if (err) {
+              setToaster({
+                message: err?.response?.data?.message || err.message,
+                type: "alsert-error",
+                show: true,
+              });
+            } else {
+              // first sign token to the local storage
+              localStorage?.setItem("X-AUTH-TOKEN", data?.token);
+              // set authenticated to redux store
+              dispatch(login(data));
+
+              setRequestLoading(false);
+              // navigate to the app page
+              navigate("/app");
+            }
+          },
+          setRequestLoading
+        );
       },
     });
 
@@ -195,11 +199,14 @@ const loginSchema = yup.object({
   remember: yup.boolean().default(false),
 });
 
-const handleLoginSubmit = async (values, cb) => {
+const handleLoginSubmit = async (values, cb, setLoading) => {
   try {
+    setLoading(true);
     const data = await HttpClient.post("/auth/login", values);
     cb(data, null);
+    setLoading(false);
   } catch (err) {
+    setLoading(false);
     cb(null, err);
   }
 };

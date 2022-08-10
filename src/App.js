@@ -15,6 +15,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthGuard } from "./wrappers/Auth";
 import Registered from "./pages/Registered";
 import Activate from "./pages/activate";
+import { useLayoutEffect } from "react";
+import HttpClient from "./Http-Client";
 //import Dashboard from "./pages/Dashboard";
 
 library.add(fas);
@@ -72,6 +74,16 @@ const routes = [
 ];
 
 function App() {
+  useLayoutEffect(() => {
+    HttpClient.get("/csrf")
+      .then(({ data }) => {
+        localStorage.setItem("csrf", data ?? null);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>

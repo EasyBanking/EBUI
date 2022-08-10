@@ -280,6 +280,7 @@ export default function Login() {
                     <select
                       className="select select-bordered w-full max-w-xs"
                       name="question"
+                      defaultValue={data?.[0]?.content}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.question}
