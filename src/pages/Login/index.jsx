@@ -36,7 +36,7 @@ export default function Login() {
             if (err) {
               setToaster({
                 message: err?.response?.data?.message || err.message,
-                type: "alsert-error",
+                type: "alert-error",
                 show: true,
               });
             } else {

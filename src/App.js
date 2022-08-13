@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
@@ -12,9 +12,10 @@ import ForgetPassword from "./pages/forget-password";
 import RestorePassword from "./pages/Restore-Password";
 import Register from "./pages/Register";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AuthGuard } from "./wrappers/Auth";
 import Registered from "./pages/Registered";
+import { NextUIProvider, createTheme } from "@nextui-org/react";
 import Activate from "./pages/activate";
+import Main from "./pages/main";
 import { useLayoutEffect } from "react";
 import HttpClient from "./Http-Client";
 //import Dashboard from "./pages/Dashboard";
@@ -22,6 +23,25 @@ import HttpClient from "./Http-Client";
 library.add(fas);
 library.add(far);
 library.add(fab);
+
+const AppTheme = createTheme({
+  type: "light",
+  theme: {
+    colors: {
+      primary: "#3a0ca3",
+      secondary: "#7209b7",
+      info: "#f72585",
+      sub: "#4361ee",
+      extra: "#4cc9f0",
+      error: "#e63946",
+      warning: "#ffc300",
+      success: "#00af54",
+      light: "#e5e5e5",
+      dark: "#323031",
+      white: "#ffff",
+    },
+  },
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -61,7 +81,7 @@ const routes = [
   },
   {
     path: "/app",
-    Page: () => <AuthGuard> i am authenticated </AuthGuard>,
+    Page: Main,
   },
   {
     path: "/info",
@@ -87,22 +107,24 @@ function App() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <ThemeWrapper>
-            <Routes>
-              {routes.map(({ Page, path }, i) => {
-                return (
-                  <Route
-                    path={path}
-                    caseSensitive={true}
-                    element={<Page />}
-                    key={`pg-${i}`}
-                  />
-                );
-              })}
-            </Routes>
-          </ThemeWrapper>
-        </BrowserRouter>
+        <NextUIProvider theme={AppTheme}>
+          <BrowserRouter>
+            <ThemeWrapper>
+              <Routes>
+                {routes.map(({ Page, path }, i) => {
+                  return (
+                    <Route
+                      path={path}
+                      caseSensitive={true}
+                      element={<Page />}
+                      key={`pg-${i}`}
+                    />
+                  );
+                })}
+              </Routes>
+            </ThemeWrapper>
+          </BrowserRouter>
+        </NextUIProvider>
       </QueryClientProvider>
     </Provider>
   );
