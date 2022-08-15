@@ -17,7 +17,7 @@ export default function Contact() {
         </div>
       </div>
       <div className="col-span-1 grid content-center justify-center">
-        <button className="btn btn-secondary rounded-full w-32">
+        <button className="btn btn-primary rounded-full w-32">
           <Link to="/contact-us">Contact Us</Link>
         </button>
       </div>

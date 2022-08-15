@@ -10,7 +10,7 @@ export default function Questions() {
         tabIndex="0"
         className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-10"
       >
-        <div className="collapse-title text-xl font-medium after:text-secondary">
+        <div className="collapse-title text-xl font-medium after:text-primary">
           Focus me to see content
         </div>
         <div className="collapse-content">
@@ -27,7 +27,7 @@ export default function Questions() {
         tabIndex="0"
         className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-10"
       >
-        <div className="collapse-title text-xl font-medium after:text-secondary">
+        <div className="collapse-title text-xl font-medium after:text-primary">
           Focus me to see content
         </div>
         <div className="collapse-content">
@@ -44,7 +44,7 @@ export default function Questions() {
         tabIndex="0"
         className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-10"
       >
-        <div className="collapse-title text-xl font-medium after:text-secondary">
+        <div className="collapse-title text-xl font-medium after:text-primary">
           Focus me to see content
         </div>
         <div className="collapse-content">
@@ -61,7 +61,7 @@ export default function Questions() {
         tabIndex="0"
         className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-10"
       >
-        <div className="collapse-title text-xl font-medium after:text-secondary">
+        <div className="collapse-title text-xl font-medium after:text-primary">
           Focus me to see content
         </div>
         <div className="collapse-content">
@@ -78,11 +78,11 @@ export default function Questions() {
       </p>
       <p className="text-center">
         Can't find answer you're looking for?Please contact with our friendly
-        team{" "}
-        <Link to="/contact-us" className="text-secondary">
-          {" "}
-          Contact Us{" "}
-        </Link>{" "}
+        team
+        <Link to="/contact-us" className="text-primary">
+          
+          Contact Us
+        </Link>
       </p>
     </div>
   );

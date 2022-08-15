@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function FeaturesCards() {
   return (
-    <div className="grid md:grid-cols-4 grid-cols-1 gap-5 md:gap-10">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 md:gap-10">
       {/*             Card 1                      */}
-      <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+      <Link to="/transfer">
+        <div className="card  bg-base-100 shadow-xl flex  py-8 md:px-4 ">
           <div className=" text-center">
             <img
               src="./pic/Transfer.gif"
@@ -22,7 +22,7 @@ export default function FeaturesCards() {
       {/*             Card 2                      */}
 
       <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+        <div className="card  bg-base-100 shadow-xl flex py-8 md:px-4 ">
           <div className=" text-center">
             <img src="./pic/card.gif" className="w-20 m-2 inline " alt="Icon" />
           </div>
@@ -33,8 +33,8 @@ export default function FeaturesCards() {
       </Link>
       {/*             Card 3                      */}
 
-      <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+      <Link to="/urgents">
+        <div className="card  bg-base-100 shadow-xl flex  py-8 md:px-4 ">
           <div className=" text-center">
             <img
               src="./pic/Caution.gif"
@@ -51,7 +51,7 @@ export default function FeaturesCards() {
       {/*             Card 4                      */}
 
       <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+        <div className="card  bg-base-100 shadow-xl flex  py-8 md:px-4 ">
           <div className=" text-center">
             <img
               src="./pic/Calendar.gif"
@@ -68,7 +68,7 @@ export default function FeaturesCards() {
       {/*             Card 5                      */}
 
       <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+        <div className="card  bg-base-100 shadow-xl flex   py-8 md:px-4 ">
           <div className=" text-center">
             <img
               src="./pic/texting.gif"
@@ -85,7 +85,7 @@ export default function FeaturesCards() {
       {/*             Card 6                      */}
 
       <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+        <div className="card  bg-base-100 shadow-xl flex  py-8 md:px-4 ">
           <div className=" text-center">
             <img
               src="./pic/Compass.gif"
@@ -102,7 +102,7 @@ export default function FeaturesCards() {
       {/*             Card 7                      */}
 
       <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+        <div className="card  bg-base-100 shadow-xl flex  py-8 md:px-4 ">
           <div className=" text-center">
             <img
               src="./pic/Location.gif"
@@ -119,7 +119,7 @@ export default function FeaturesCards() {
       {/*             Card 8                      */}
 
       <Link to="#">
-        <div className="card  bg-base-100 shadow-xl flex  pl-0 p-4 md:p-8 ">
+        <div className="card  bg-base-100 shadow-xl flex  py-8 md:px-4 ">
           <div className=" text-center">
             <img src="./pic/Back.gif" className="w-20 m-2 inline " alt="Icon" />
           </div>

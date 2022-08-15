@@ -1,6 +1,6 @@
 export default function Help() {
   return (
-    <div id="Help" className="grid grid-cols-1 bg-slate-50 p-20 ">
+    <div id="Help" className="grid grid-cols-1 p-20 ">
       <div className="text-center mb-10">
         <p className="font-extrabold   lg:text-4xl text-2xl text-purple-900  pl-2 pb-3">
           How Can We Help Your

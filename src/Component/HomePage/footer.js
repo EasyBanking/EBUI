@@ -13,7 +13,7 @@ export default function Footer() {
       </div>
 
       <div className="grid item-end py-10">
-        {/* <Link to='#App'>App</Link> */}
+        
         <a href="#App" className="mb-4">
           App
         </a>

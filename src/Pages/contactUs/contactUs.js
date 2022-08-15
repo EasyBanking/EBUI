@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import { formSchema } from "./formSchema";
 
 export default function ContactUs() {
-  const { values, handleChange, handleBlur, errors, touched, isValid } =
+  const onSubmit = () => {
+    console.log("format data", values);
+    // axios
+    //   .post("", values)
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
+  };
+  const { values, handleChange, handleBlur, errors, touched, isValid ,handleSubmit} =
     useFormik({
       initialValues: {
         firstName: "",
@@ -12,19 +19,21 @@ export default function ContactUs() {
         text: "",
       },
       validationSchema: formSchema,
+      onSubmit,
     });
-  // console.log(errors)
+  
   return (
     <>
       <div className="py-20 md:px-40  p-5">
         <p className="font-black  md:text-4xl text-2xl   pl-2 pb-3 text-center mb-10">
           Contact Us
         </p>
-        <div className="form-control bg-purple-50 md:p-20 p-5 rounded-xl">
+        <div className="form-control bg-slate-50 md:p-20 p-5 rounded-xl">
+          <form onSubmit={handleSubmit}>
           <label className="input-group lg:flex-row flex-col mb-10 ">
             <div>
               <label className="label">
-                <span className="label-text">First Name</span>
+                <span className="label-text bg-transparent">First Name</span>
               </label>
               <input
                 type="text"
@@ -43,7 +52,7 @@ export default function ContactUs() {
             </div>
             <div>
               <label className="label">
-                <span className="label-text lg:ml-5">Last Name</span>
+                <span className="label-text lg:ml-5 bg-transparent">Last Name</span>
               </label>
               <input
                 type="text"
@@ -105,12 +114,13 @@ export default function ContactUs() {
           <div className="grid justify-center">
             <button
               type="submit"
-              className="btn btn-secondary rounded-full md:w-80 "
+              className="btn btn-primary rounded-full md:w-80 "
               disabled={!isValid}
             >
               <Link to="#">Send</Link>
             </button>
           </div>
+          </form>
         </div>
       </div>
     </>

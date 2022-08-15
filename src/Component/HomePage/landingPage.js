@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Landing() {
+  const [user,setUser]=useState({
+    name:''
+  })
   return (
     <div
       id="App"
@@ -24,8 +28,8 @@ export default function Landing() {
             exercitationem fugit nihil vero repellendus magni saepe?
           </p>
 
-          <button className="btn btn-secondary rounded-full">
-            <a href="#Features">Start</a>
+          <button className="btn btn-primary rounded-full">
+            <Link to={`${user.name?"/app":"#"}`}>{user.name?"App":"Log In" }</Link>
           </button>
         </div>
       </div>
