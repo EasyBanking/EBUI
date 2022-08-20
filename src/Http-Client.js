@@ -13,7 +13,7 @@ const HttpClient = axios.create({
 });
 
 HttpClient.interceptors.request.use((config) => {
-  const token = localStorage?.getItem("token");
+  const token = localStorage?.getItem("X-AUTH-TOKEN");
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

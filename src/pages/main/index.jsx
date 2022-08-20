@@ -1,10 +1,10 @@
-import { AuthenticatedWrapper } from "../../wrappers/Auth";
+import { AuthGuard } from "../../wrappers/Auth";
 import { Layout } from "../../components/base";
 import { Container } from "@nextui-org/react";
 
 export default function Main(props) {
   return (
-    <AuthenticatedWrapper>
+    <AuthGuard>
       <Layout>
         <div className="text-black">
           <p>hello wrold</p>
@@ -78,6 +78,6 @@ export default function Main(props) {
           <p>hello wrold</p>
         </div>
       </Layout>
-    </AuthenticatedWrapper>
+    </AuthGuard>
   );
 }

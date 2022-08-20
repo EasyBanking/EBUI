@@ -11,7 +11,6 @@ const store = configureStore({
     auth: {
       isLoggedIn: false,
       user: null,
-      token: null,
     },
     theme: {
       leftbar: window.outerWidth > 960,
