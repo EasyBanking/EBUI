@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ScheduleModal from './ScheduleModal';
 
 const Schedule = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className='container mx-auto my-32 bg-white'>
-      <h2 className='w-48 bg-yellow-500 mx-auto px-4 py-2 font-bold text-center rounded my-3'>
+      <h4
+        className='w-64 bg-yellow-500 mx-auto px-4 py-3 font-bold text-center rounded my-5 cursor-pointer'
+        onClick={handleShow}>
         Take a Schedule
-      </h2>
+      </h4>
       <div className='mx-auto flex justify-between flex-wrap px-4'>
-        <div className='bg-violet-500 text-white w-64 p-2 my-2 rounded'>
+        <div className='bg-violet-500 text-white w-64 p-4 my-2 rounded'>
           <div className='flex justify-between flex-wrap'>
             <p>Schedule</p>
             <div>num</div>
@@ -15,7 +22,7 @@ const Schedule = () => {
           <div>Date</div>
           <div>Smart Village</div>
         </div>
-        <div className='bg-violet-500 text-white w-64 p-2 my-2 rounded'>
+        <div className='bg-violet-500 text-white w-64 p-4 my-2 rounded'>
           <div className='flex justify-between flex-wrap'>
             <p>Schedule</p>
             <div>num</div>
@@ -23,7 +30,7 @@ const Schedule = () => {
           <div>Date</div>
           <div>Smart Village</div>
         </div>
-        <div className='bg-violet-500 text-white w-64 p-2 my-2 rounded'>
+        <div className='bg-violet-500 text-white w-64 p-4 my-2 rounded'>
           <div className='flex justify-between flex-wrap'>
             <p>Schedule</p>
             <div>num</div>
@@ -32,6 +39,7 @@ const Schedule = () => {
           <div>Smart Village</div>
         </div>
       </div>
+      <ScheduleModal handleClose={handleClose} show={show} />
     </div>
   );
 };

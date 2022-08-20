@@ -1,4 +1,8 @@
+import { useStepperContext } from '../contexts/StepperContext';
+
 export default function StepperControl({ handleClick, currentStep, steps }) {
+  const data = useStepperContext();
+  console.log('data', data);
   return (
     <div className='container mt-4 mb-8 flex justify-around'>
       <button

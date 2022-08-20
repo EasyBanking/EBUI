@@ -8,6 +8,8 @@ import Security from './components/steps/Security';
 import Work from './components/steps/Work';
 import Address from './components/steps/Address';
 import Final from './components/steps/Final';
+import Schedule from './components/Schedule';
+import { useStepperContext } from './contexts/StepperContext';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -17,13 +19,37 @@ function App() {
   const displayStep = (step) => {
     switch (step) {
       case 1:
-        return <Basic />;
+        return (
+          <Basic
+            handleClick={handleClick}
+            currentStep={currentStep}
+            steps={steps}
+          />
+        );
       case 2:
-        return <Security />;
+        return (
+          <Security
+            handleClick={handleClick}
+            currentStep={currentStep}
+            steps={steps}
+          />
+        );
       case 3:
-        return <Work />;
+        return (
+          <Work
+            handleClick={handleClick}
+            currentStep={currentStep}
+            steps={steps}
+          />
+        );
       case 4:
-        return <Address />;
+        return (
+          <Address
+            handleClick={handleClick}
+            currentStep={currentStep}
+            steps={steps}
+          />
+        );
       case 5:
         return <Final />;
       default:
@@ -40,8 +66,7 @@ function App() {
 
   return (
     <div>
-      <div className='mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-1/2'>
-        Stepper
+      <div className='mx-auto rounded-2xl bg-white  shadow-xl md:w-1/2'>
         <div className='horizontal container mt-5 '>
           <Stepper steps={steps} currentStep={currentStep} />
 
@@ -50,14 +75,15 @@ function App() {
           </div>
         </div>
         {/* navigation button */}
-        {currentStep !== steps.length && (
+        {/* {currentStep !== steps.length && (
           <StepperControl
             handleClick={handleClick}
             currentStep={currentStep}
             steps={steps}
           />
-        )}
+        )} */}
       </div>
+      <Schedule />
     </div>
   );
 }
