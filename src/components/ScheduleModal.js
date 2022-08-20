@@ -20,12 +20,12 @@ function ScheduleModal(props) {
         <Modal.Body>
           <Form>
             <Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type='email'
-                placeholder='name@example.com'
-                autoFocus
-              />
+              <Form.Label>Location</Form.Label>
+              <Form.Control as='select' value={''} onChange={handleChange}>
+                {/* {data.map((opt) => (
+                  <option value={opt.value}>{opt.value}</option>
+                ))} */}
+              </Form.Control>
             </Form.Group>
             <Form.Group controlId='duedate'>
               <Form.Control
