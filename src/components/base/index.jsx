@@ -346,8 +346,19 @@ const AuthenticatedRightBar = (props) => {
             {props?.user?.username}
           </Dropdown.Button>
           <Dropdown.Menu aria-label="Static Actions">
-            <Dropdown.Item key="profile">profile</Dropdown.Item>
-            <Dropdown.Item key="logout">logout</Dropdown.Item>
+            <Dropdown.Item key="profile">
+              <Link to="/profile">profile</Link>
+            </Dropdown.Item>
+            <Dropdown.Item key="logout">
+              <LinkUi
+                onClick={() => {
+                  window?.localStorage?.removeItem("X-AUTH-TOKEN");
+                  window.location.replace("/");
+                }}
+              >
+                logout
+              </LinkUi>
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

@@ -29,6 +29,7 @@ import Home from "./pages/home";
 import Faqs from "./pages/faqs";
 import Contact from "./pages/contact";
 import Locations from "./pages/locations";
+import UpdateProfile from "./pages/profile";
 
 library.add(fas);
 library.add(far);
@@ -140,6 +141,10 @@ const routes = [
   {
     path: "/locations",
     Page: Locations,
+  },
+  {
+    path: "/profile",
+    Page: UpdateProfile,
   },
   {
     path: "/",

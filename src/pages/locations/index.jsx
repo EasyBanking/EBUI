@@ -2,7 +2,6 @@ import Nav from "../../components/nav";
 import { Button, Container, Input, Text } from "@nextui-org/react";
 import { useState } from "react";
 import HttpClient from "../../Http-Client";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LoaderWrapper } from "../../components/Loader";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +15,25 @@ const iconPerson = new L.Icon({
   iconUrl: marker,
   iconRetinaUrl: marker,
   iconSize: new L.Point(60, 75),
-  className: "",
 });
+
+const getUserLocation = function () {
+  return new Promise((res, rej) => {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          res([pos.coords.latitude, pos.coords.longitude]);
+        },
+        rej,
+        {
+          enableHighAccuracy: true,
+        }
+      );
+    } else {
+      rej("windows doest not support geoLocation api");
+    }
+  });
+};
 
 export default function Locations() {
   const [loader, setLoader] = useState(false);
@@ -29,20 +45,6 @@ export default function Locations() {
   const markerRef = useRef(null);
 
   const map = useRef(null);
-
-  const onShowMarker = () => {
-    const m = map.current;
-
-    if (!m) {
-      return;
-    }
-
-    const mkr = markerRef.current;
-
-    if (mkr) {
-      mkr.openPopup();
-    }
-  };
 
   useEffect(() => {
     HttpClient.get("/location?geojson=1")
@@ -57,18 +59,16 @@ export default function Locations() {
   }, []);
 
   useEffect(() => {
-    if (!window?.localStorage?.getItem("location")) {
-      window.navigator.geolocation.getCurrentPosition((pos) => {
-        const coords = [pos.coords.latitude, pos.coords.longitude];
-        setOrigin(coords);
-        window.localStorage.setItem("location", origin.join(","));
+    getUserLocation()
+      .then((cords) => {
+        setOrigin(cords);
+      })
+      .catch((err) => {
+        router("/error", { state: err.message });
       });
-    } else {
-      setOrigin(window?.localStorage?.getItem("location").split(","));
-    }
   }, []);
 
-  if (!loader && !origin.length) {
+  if (!loader && !origin?.length) {
     return <LoaderWrapper />;
   }
 
@@ -86,43 +86,44 @@ export default function Locations() {
             <select
               className="select select-bordered"
               onChange={(v) => {
-                map.current.flyTo(v.target.value.split(","));
+                map?.current?.flyTo(v?.target?.value?.split(","));
               }}
             >
               {locations.map((l, i) => {
                 return (
-                  <option value={l?.geometry?.coordinates.reverse().join()}>
+                  <option value={l?.geometry?.coordinates?.reverse()?.join()}>
                     {l?.properties?.addresse}
                   </option>
                 );
               })}
             </select>
           </div>
-          <MapContainer
-            center={origin}
-            ref={map}
-            zoom={12}
-            style={{ height: 400 }}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+          {origin.length ? (
+            <MapContainer
+              center={origin}
+              ref={map}
+              zoom={12}
+              style={{ height: 400 }}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
 
-            {locations.map((l) => {
-              return (
-                <Marker
-                  icon={iconPerson}
-                  ref={markerRef}
-                  position={l?.geometry?.coordinates}
-                  
-                >
-                  <Popup  className="z-50">{l?.properties?.addresse}</Popup>
-                </Marker>
-              );
-            })}
-          </MapContainer>
+              {locations.map((l) => {
+                return (
+                  <Marker
+                    icon={iconPerson}
+                    ref={markerRef}
+                    position={l?.geometry?.coordinates}
+                  >
+                    <Popup className="z-50">{l?.properties?.addresse}</Popup>
+                  </Marker>
+                );
+              })}
+            </MapContainer>
+          ) : null}
         </section>
       </Container>
     </section>
