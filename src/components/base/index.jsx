@@ -241,7 +241,7 @@ const AuthenticatedRightBar = (props) => {
   return (
     <span className="flex flex-row items-center justify-between w-full">
       <div className="my-auto flex items-center justify-end h-full">
-        <Dropdown isOpen={notficationsOpen}>
+        <Dropdown isOpen={notficationsOpen} type="listbox">
           <Dropdown.Trigger>
             <Button
               onClick={() => {
@@ -272,9 +272,7 @@ const AuthenticatedRightBar = (props) => {
               .map((n, i) => {
                 if (i < 5) {
                   return (
-                    <Dropdown.Item>
-                      <small className="text-xs">{n?.content}</small>
-                    </Dropdown.Item>
+                    <Dropdown.Item className="py-8 text-2xs">{n?.content}</Dropdown.Item>
                   );
                 }
               })}

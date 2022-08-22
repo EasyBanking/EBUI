@@ -143,22 +143,6 @@ export default function Chat(props) {
         setWaitForAdmin(true);
       });
 
-      socket.on("room.init", (data) => {
-        console.log(data, "room init");
-      });
-
-      socket.on("room.message", (data) => {
-        console.log(data);
-      });
-
-      socket.on("user.leave.message", (data) => {
-        console.log(data);
-      });
-
-      socket.on("error", (data) => {
-        console.log(data);
-      });
-
       socket.on("socket.ready", (data) => {
         setAdmin(data.admin);
         setIsAdminConnected(true);
@@ -304,7 +288,9 @@ export default function Chat(props) {
           </div>
           <div className="mt-4">
             {joined ? (
-              <Button onClick={() => requestChat()}>leave</Button>
+              <Button onClick={() => window.location.replace("/")}>
+                leave
+              </Button>
             ) : (
               <Button onClick={() => requestChat()} disabled={waitForAdmin}>
                 {waitForAdmin ? <Loading color="primary" /> : "request a chat"}
