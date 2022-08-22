@@ -407,14 +407,6 @@ const TopBar = (props) => {
                     home
                   </LinkUi>
                 </Link>
-                <Link to="/about" className="m-0 p-0">
-                  <LinkUi
-                    color="primary"
-                    className="mr-4 bold capitalize text-sm"
-                  >
-                    about
-                  </LinkUi>
-                </Link>
 
                 <Link to="/faqs" className="m-0 p-0">
                   <LinkUi

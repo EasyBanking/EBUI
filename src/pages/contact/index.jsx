@@ -20,7 +20,7 @@ export default function ContactUs() {
   const { values, handleChange, handleBlur, errors, handleSubmit, isValid } =
     useFormik({
       initialValues: {
-        fullname: "",
+        subject: "",
         email: "",
         message: "",
       },
@@ -84,17 +84,17 @@ export default function ContactUs() {
                 <div>
                   <Input
                     type={"text"}
-                    label="fullname"
+                    label="subject"
                     fullWidth
-                    name="fullname"
+                    name="subject"
                     bordered
-                    placeholder="fullname"
+                    placeholder="subject"
                     className="bg-white"
                     size="lg"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    helperText={errors.fullname}
-                    value={values.fullname}
+                    helperText={errors.subject}
+                    value={values.subject}
                     color="primary"
                     helperColor={"error"}
                   />
@@ -149,7 +149,7 @@ export default function ContactUs() {
 const HandleSendMessage = async (values, onSuccess, onError, setLoading) => {
   try {
     setLoading(true);
-    const { data } = await HttpClient.post("/user/message", values);
+    const { data } = await HttpClient.post("/contact", values);
     onSuccess(data);
     setLoading(false);
   } catch (err) {

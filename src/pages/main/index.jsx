@@ -13,6 +13,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useEffect, useState } from "react";
+import HttpClient from "../../Http-Client";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -61,6 +64,23 @@ const data = [
 
 export default function Main(props) {
   const user = useSelector((st) => st?.auth?.user);
+  const router = useNavigate();
+
+  const [topSenders, setTopSenders] = useState([]);
+  const [topReceviers, setTopReceviers] = useState([]);
+
+  useEffect(() => {
+    HttpClient.get("/account/stats")
+      .then(({ data }) => {
+        setTopReceviers(data?.["TOP Receivers"] || []);
+        setTopReceviers(data?.["TOP Senders"] || []);
+      })
+      .catch((err) => {
+        console.log(err);
+        router("/error");
+      });
+  }, []);
+
   return (
     <AuthGuard>
       <Layout>
@@ -78,49 +98,53 @@ export default function Main(props) {
             </div>
           </div>
 
-          <div className="mt-5">
-            <div className="mb-4">
-              <Text h5>most recevers</Text>
+          {topReceviers.length ? (
+            <div className="mt-5">
+              <div className="mb-4">
+                <Text h5>Most Receivers</Text>
+              </div>
+              <Grid.Container gap={1}>
+                {topReceviers?.map((t) => {
+                  return (
+                    <Grid sm={4}>
+                      <div className="bg-primary rounded-md  flex flex-col items-center justify-center shadow-2xl w-full h-40 text-white">
+                        <Text h6 color="white">
+                          {t?.account?.[0]?.firstName +
+                            " " +
+                            t?.account?.[0]?.lastName}
+                        </Text>
+                        <span className="mt-2 bold text-xs">{t?.count}</span>
+                      </div>
+                    </Grid>
+                  );
+                })}
+              </Grid.Container>
             </div>
-            <Grid.Container gap={1}>
-              <Grid sm={4}>
-                <div className="bg-primary rounded-md  flex flex-col items-center justify-center shadow-2xl w-full h-40 text-white">
-                  <Text h6 color="white">
-                    mohammed soliman
-                  </Text>
-                  <img
-                    className="w-16 h-16 rounded-full border-warning border-2 mt-2"
-                    src="https://res.cloudinary.com/islam-saeed/image/upload/v1660596786/62fab231b8d606033511c262.webp"
-                  />
-                  <span className="mt-2 bold text-xs">140 EGP</span>
-                </div>
-              </Grid>
-              <Grid sm={4}>
-                <div className="bg-primary rounded-md  flex flex-col items-center justify-center shadow-2xl w-full h-40 text-white">
-                  <Text h6 color="white">
-                    mohammed soliman
-                  </Text>
-                  <img
-                    className="w-16 h-16 rounded-full border-warning border-2 mt-2"
-                    src="https://res.cloudinary.com/islam-saeed/image/upload/v1660596786/62fab231b8d606033511c262.webp"
-                  />
-                  <span className="mt-2 bold text-xs">140 EGP</span>
-                </div>
-              </Grid>
-              <Grid sm={4}>
-                <div className="bg-primary rounded-md  flex flex-col items-center justify-center shadow-2xl w-full h-40 text-white">
-                  <Text h6 color="white">
-                    mohammed soliman
-                  </Text>
-                  <img
-                    className="w-16 h-16 rounded-full border-warning border-2 mt-2"
-                    src="https://res.cloudinary.com/islam-saeed/image/upload/v1660596786/62fab231b8d606033511c262.webp"
-                  />
-                  <span className="mt-2 bold text-xs">140 EGP</span>
-                </div>
-              </Grid>
-            </Grid.Container>
-          </div>
+          ) : null}
+
+          {topSenders?.length ? (
+            <div className="mt-5">
+              <div className="mb-4">
+                <Text h5>Most Senders</Text>
+              </div>
+              <Grid.Container gap={1}>
+                {topSenders?.map((t) => {
+                  return (
+                    <Grid sm={4}>
+                      <div className="bg-primary rounded-md  flex flex-col items-center justify-center shadow-2xl w-full h-40 text-white">
+                        <Text h6 color="white">
+                          {t?.account?.[0]?.firstName +
+                            " " +
+                            t?.account?.[0]?.lastName}
+                        </Text>
+                        <span className="mt-2 bold text-xs">{t?.count}</span>
+                      </div>
+                    </Grid>
+                  );
+                })}
+              </Grid.Container>
+            </div>
+          ) : null}
 
           <div className="mt-12" style={{ height: 280 }}>
             <Text h5>monthly receevs</Text>
@@ -149,8 +173,6 @@ export default function Main(props) {
               </BarChart>
             </ResponsiveContainer>
           </div>
-
-          
         </section>
       </Layout>
     </AuthGuard>
