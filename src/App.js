@@ -20,7 +20,7 @@ import Main from "./pages/main";
 import TransferMoney from "./pages/transferMoney";
 import Payment from "./pages/Pay";
 import ReadPayment from "./pages/Pay/readPay";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import HttpClient from "./Http-Client";
 import Transactions from "./pages/Tranactions";
 import Schedules from "./pages/schedules/index";
@@ -153,10 +153,12 @@ const routes = [
 ];
 
 function App() {
-  useLayoutEffect(() => {
+  useEffect(() => {
     HttpClient.get("/csrf")
       .then(({ data }) => {
-        localStorage.setItem("csrf", data ?? null);
+        if(data){
+          localStorage.setItem("csrf", data);
+        }
       })
       .catch((err) => {
         console.log(err);

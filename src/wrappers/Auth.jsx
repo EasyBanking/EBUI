@@ -37,16 +37,31 @@ export const AuthGuard = (props) => {
 
 export const AuthenticatedWrapper = (props) => {
   const [isLoad, setIsLoad] = useState(false);
+  const dispatch = useDispatch();
   const { state } = useLocation();
   const router = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem(AUTH_KEY)) {
+    /* if (localStorage?.getItem(AUTH_KEY)) {
       router("/app", { replace: true });
     } else {
       setIsLoad(true);
-    }
+    }*/
+
+    HttpClient.get("/auth/checkme")
+      .then(({ data }) => {
+        const { user } = data;
+        dispatch(login(user));
+        console.log(user,"---")
+        if (user?.account) {
+          return router("/app");
+        }
+        setIsLoad(true);
+      })
+      .catch((err) => {
+        localStorage?.removeItem(AUTH_KEY);
+        setIsLoad(true)
+      });
   }, []);
 
   if (!isLoad) {

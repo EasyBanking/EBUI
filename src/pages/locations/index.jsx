@@ -54,7 +54,7 @@ export default function Locations() {
       })
       .catch((err) => {
         setLoader(true);
-        router("/error", { replace: true });
+        router("/", { replace: true });
       });
   }, []);
 
@@ -64,7 +64,7 @@ export default function Locations() {
         setOrigin(cords);
       })
       .catch((err) => {
-        router("/error", { state: err.message });
+        router("/", { state: err.message });
       });
   }, []);
 

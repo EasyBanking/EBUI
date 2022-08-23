@@ -37,7 +37,7 @@ export default function CreateYourAccount() {
           setLoading,
           (err) => {
             setToaster({
-              message: "an error happend to create account.",
+              message: err?.response?.data?.message || err?.message,
               type: "alert-error",
               show: true,
             });
@@ -50,7 +50,6 @@ export default function CreateYourAccount() {
             });
 
             router("/app", { replace: true });
-            console.log(data);
           }
         ),
     });

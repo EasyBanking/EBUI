@@ -58,6 +58,8 @@ const Settings = (props) => {
         setPassword("");
       })
       .finally(() => {
+        localStorage.removeItem("X-AUTH-TOKEN");
+        window.location.reload();
         setLoader(false);
       });
   }, [request, password]);
@@ -356,8 +358,8 @@ const UpdateUserComponent = (props) => {
     isValid,
   } = useFormik({
     initialValues: {
-      username: props.username,
-      email: props.email,
+      username: props?.username,
+      email: props?.email,
       password: "",
       question: props?.security?.question,
       answear: props?.security?.answer,
@@ -368,7 +370,7 @@ const UpdateUserComponent = (props) => {
         { ...values, pimg },
         (data) => {
           setToaster({
-            message: "successfully registered",
+            message: "successfully updated",
             type: "alert-success",
             show: true,
           });
@@ -393,7 +395,7 @@ const UpdateUserComponent = (props) => {
       })
       .catch((err) => {
         console.log(err);
-        router("/error", { replace: true });
+        router("/", { replace: true });
       });
   }, []);
 
@@ -436,8 +438,8 @@ const UpdateUserComponent = (props) => {
                     type="text"
                     className="bg-white"
                     name="username"
-                    initialValue={values.username}
-                    helperText={errors.username}
+                    initialValue={values?.username}
+                    helperText={errors?.username}
                     helperColor="error"
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -448,8 +450,8 @@ const UpdateUserComponent = (props) => {
                   <Input
                     type="email"
                     name="email"
-                    value={values.email}
-                    helperText={errors.email}
+                    value={values?.email}
+                    helperText={errors?.email}
                     helperColor="error"
                     onChange={handleChange}
                     className="bg-white"
@@ -462,8 +464,8 @@ const UpdateUserComponent = (props) => {
                   <Input.Password
                     type="password"
                     name="password"
-                    value={values.password}
-                    helperText={errors.password}
+                    value={values?.password}
+                    helperText={errors?.password}
                     helperColor="error"
                     className="bg-white"
                     fullWidth

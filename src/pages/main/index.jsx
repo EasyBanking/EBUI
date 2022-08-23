@@ -77,7 +77,7 @@ export default function Main(props) {
       })
       .catch((err) => {
         console.log(err);
-        router("/error");
+        router("/");
       });
   }, []);
 
